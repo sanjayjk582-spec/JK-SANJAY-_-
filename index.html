@@ -1,31 +1,174 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Login form design</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <div class="login-box">
-            <img src="Avatar.png.png" class="avatar">
-            <h1>Login here</h1>
-            <form id="login-form" method="post">
-                <p>User name:</p>
-                <input type="text" name="username" placeholder="Enter Username" autocomplete="username" required>
-                <p>Password:</p>
-                <input type="password" name="password" placeholder="Enter password" autocomplete="current-password" required>
-                <input type="submit" value="submit"><br>
-                <a href="#"> Lost your password?</a><br>
-                <a href="#">don't have an account?</a>
-                <p id="login-status" role="status" aria-live="polite"></p>
-            </form>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101c1b">
+    <title>Sign in | Northstar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="login-shell">
+        <section class="login-panel" aria-labelledby="page-title">
+            <a class="wordmark" href="index.html" aria-label="Northstar home">
+                <span class="wordmark-mark" aria-hidden="true">N</span>
+                <span>NORTHSTAR</span>
+            </a>
 
-        </div>
-        <script>
-            document.getElementById("login-form").addEventListener("submit", (event) => {
+            <div class="login-content">
+                <p class="eyebrow"><span></span> MEMBER ACCESS</p>
+                <h1 id="page-title">Good to see<br>you again.</h1>
+                <p class="intro">Sign in to pick up right where you left off.</p>
+
+                <div id="login-form" role="form" aria-labelledby="page-title">
+                    <label for="username">Email or username</label>
+                    <input id="username" name="username" type="text" placeholder="you@example.com" autocomplete="username" required>
+
+                    <div class="password-heading">
+                        <label for="password">Password</label>
+                        <span class="secure-note">DEMO ONLY</span>
+                    </div>
+                    <div class="password-field">
+                        <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                        <button class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+
+                    <p class="demo-hint">Test login: <code>demo</code> / <code>demo123</code></p>
+
+                    <button class="submit-button" type="button" id="login-button">
+                        <span>Sign in</span>
+                        <span class="submit-arrow" aria-hidden="true">&#8594;</span>
+                    </button>
+                    <p id="login-status" class="login-status" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+
+            <footer class="panel-footer">
+                <span>Static demo</span>
+                <span class="footer-dot" aria-hidden="true"></span>
+                <span>No account service</span>
+            </footer>
+        </section>
+
+        <aside class="visual-panel" aria-label="A blue sports car at night">
+            <div class="visual-caption">
+                <span class="caption-index">01 / 04</span>
+                <p>Find your next<br><strong>open road.</strong></p>
+                <span class="caption-rule"></span>
+            </div>
+            <span class="image-credit">DRIVE YOUR OWN DIRECTION</span>
+        </aside>
+    </main>
+
+    <main id="welcome-screen" class="welcome-screen" hidden>
+        <header class="welcome-header">
+            <a class="wordmark" href="#welcome-home" aria-label="Northstar home">
+                <span class="wordmark-mark" aria-hidden="true">N</span>
+                <span>NORTHSTAR</span>
+            </a>
+            <nav class="welcome-nav" aria-label="Welcome page navigation">
+                <a href="#welcome-home">Overview</a>
+                <a href="#demo-session">Demo session</a>
+            </nav>
+            <button id="sign-out-button" class="sign-out-button" type="button">Sign out</button>
+        </header>
+
+        <section id="welcome-home" class="welcome-hero" aria-labelledby="welcome-title">
+            <div class="welcome-copy">
+                <p class="eyebrow"><span></span> SIGNED IN · DEMO ACCOUNT</p>
+                <h1 id="welcome-title" tabindex="-1">Welcome to<br><em>your next road.</em></h1>
+                <p class="welcome-intro">You’re signed in as <strong id="welcome-username">demo</strong>. Take a look around the Northstar experience.</p>
+                <a class="welcome-cta" href="#demo-session">View your session <span aria-hidden="true">&#8595;</span></a>
+            </div>
+            <div class="welcome-image" role="img" aria-label="A blue sports car at night">
+                <span class="welcome-image-label">NORTHSTAR / OPEN ROAD</span>
+            </div>
+        </section>
+
+        <section id="demo-session" class="session-section" aria-labelledby="session-title">
+            <div class="session-heading">
+                <p class="eyebrow"><span></span> YOUR OVERVIEW</p>
+                <h2 id="session-title">A fresh start.</h2>
+                <p>This is a local sign-in demonstration. No account data is stored or sent.</p>
+            </div>
+            <div class="session-details">
+                <div class="session-detail">
+                    <span class="detail-index">01</span>
+                    <div><h3>Signed in as</h3><p id="session-identity">demo</p></div>
+                </div>
+                <div class="session-detail">
+                    <span class="detail-index">02</span>
+                    <div><h3>Session type</h3><p>Local demo only</p></div>
+                </div>
+                <div class="session-detail">
+                    <span class="detail-index">03</span>
+                    <div><h3>Next step</h3><p>Connect an authentication service for real accounts.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="welcome-footer">
+            <a class="wordmark" href="#welcome-home" aria-label="Northstar home">
+                <span class="wordmark-mark" aria-hidden="true">N</span>
+                <span>NORTHSTAR</span>
+            </a>
+            <span>LOCAL DEMO EXPERIENCE</span>
+        </footer>
+    </main>
+
+    <script>
+        const loginShell = document.querySelector(".login-shell");
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const loginForm = document.getElementById("login-form");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const passwordToggle = document.querySelector(".password-toggle");
+        const loginStatus = document.getElementById("login-status");
+        const demoCredentials = { username: "demo", password: "demo123" };
+
+        function showDemoStatus() {
+            if (!usernameInput.reportValidity() || !passwordInput.reportValidity()) {
+                return;
+            }
+
+            if (usernameInput.value.trim() === demoCredentials.username && passwordInput.value === demoCredentials.password) {
+                const username = usernameInput.value.trim();
+                document.getElementById("welcome-username").textContent = username;
+                document.getElementById("session-identity").textContent = username;
+                loginShell.hidden = true;
+                welcomeScreen.hidden = false;
+                document.title = "Welcome | Northstar";
+                document.getElementById("welcome-title").focus();
+                return;
+            }
+
+            loginStatus.textContent = "Credentials did not match the test login shown above.";
+        }
+
+        passwordToggle.addEventListener("click", () => {
+            const showingPassword = passwordInput.type === "password";
+            passwordInput.type = showingPassword ? "text" : "password";
+            passwordToggle.textContent = showingPassword ? "Hide" : "Show";
+            passwordToggle.setAttribute("aria-label", showingPassword ? "Hide password" : "Show password");
+            passwordToggle.setAttribute("aria-pressed", String(showingPassword));
+        });
+
+        document.getElementById("login-button").addEventListener("click", showDemoStatus);
+        document.getElementById("sign-out-button").addEventListener("click", () => {
+            welcomeScreen.hidden = true;
+            loginShell.hidden = false;
+            usernameInput.value = "";
+            passwordInput.value = "";
+            loginStatus.textContent = "";
+            document.title = "Sign in | Northstar";
+            usernameInput.focus();
+        });
+        loginForm.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
                 event.preventDefault();
-                document.getElementById("login-status").textContent =
-                    "Sign-in is unavailable because no authentication service is configured.";
-            });
-        </script>
-    </body>
+                showDemoStatus();
+            }
+        });
+    </script>
+</body>
 </html>

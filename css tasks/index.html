@@ -8,7 +8,7 @@
     <body>
         <div class="center"></div>
         <h1>Login</h1>
-        <form id="login-form" method="post">
+        <div id="login-form" role="form" aria-label="Sign in">
             <div class="textfield">
                 <input type="text" name="username" autocomplete="username" required>
                 <label>Username</label>
@@ -18,18 +18,33 @@
                 <label>Password</label>
             </div>
             <div class="pass">Forgot password?</div>
-            <input type="submit" value="login">
+            <input type="button" id="login-button" value="login">
             <p id="login-status" role="status" aria-live="polite"></p>
             <div class="signup_link">
                 Not a member?<a href="#">Signup</a>
             </div>
-        </form>
+        </div>
     </body>
     <script>
-        document.getElementById("login-form").addEventListener("submit", (event) => {
-            event.preventDefault();
+        const loginForm = document.getElementById("login-form");
+        const loginInputs = loginForm.querySelectorAll('input[type="text"], input[type="password"]');
+
+        function showDemoStatus() {
+            for (const input of loginInputs) {
+                if (!input.reportValidity()) {
+                    return;
+                }
+            }
             document.getElementById("login-status").textContent =
                 "Sign-in is unavailable because no authentication service is configured.";
+        }
+
+        document.getElementById("login-button").addEventListener("click", showDemoStatus);
+        loginForm.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                showDemoStatus();
+            }
         });
     </script>
 </html>

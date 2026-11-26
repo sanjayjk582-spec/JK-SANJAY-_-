@@ -1,85 +1,699 @@
+:root {
+    color-scheme: dark;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --ink: #eaf1ed;
+    --muted: #9eaaa4;
+    --panel: #111d1b;
+    --line: #33423d;
+    --mint: #b7efcf;
+    --mint-deep: #74c69d;
+    --orange: #e69b63;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
 body {
-     margin: 0;
-     padding: 0;
-     background: url("lamborghini-huracan-3840x2160-18389.jpg");
-     background-size: cover;
-     background-position: center;
-     font-family: sans-serif;
-}
-.login-box{
-       width: 320px;
-       height: 420px;
-       background: #000;
-       color: #fff;
-       top: 50%;
-       left: 50%;
-       position: absolute;
-       transform: translate( -50%, -50%);
-       box-sizing: border-box;
-       padding: 70px 30px;
-}
-
-.avatar{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left:calc(50% - 50px);
-}
-
-h1{
+    min-width: 320px;
+    min-height: 100vh;
     margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
+    display: grid;
+    place-items: center;
+    padding: 36px;
+    color: var(--ink);
+    background: #101c1b;
 }
 
-.login-box p{
-     margin: 0;
-     padding: 0;
-     font-weight: bold;
+button,
+input {
+    font: inherit;
 }
 
-.login-box  input{
-    width: 100%;
-    margin-bottom: 20px;
+.login-shell {
+    width: min(1120px, 100%);
+    min-height: min(700px, calc(100vh - 72px));
+    display: grid;
+    grid-template-columns: minmax(390px, 0.88fr) minmax(390px, 1.12fr);
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow: 0 32px 100px rgba(0, 0, 0, 0.4);
+    animation: shell-arrive 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
-.login-box input[type="text"], input[type="password"]
-{
-        border: none;
-        border-bottom: 1px solid #fff;
-        background: transparent;
-        outline:none;
-        height: 40px;
-        color: #fff;
-        font-size: 16px;
+.login-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(32px, 5vw, 64px);
+    background:
+        radial-gradient(ellipse at 12% 100%, rgba(116, 198, 157, 0.09), transparent 42%),
+        var(--panel);
 }
 
-.login-box input[type="submit"]{
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #fb2525;
-    color:#fff;
+.wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-decoration: none;
+}
+
+.wordmark-mark {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(183, 239, 207, 0.58);
+    color: var(--mint);
+    font-family: Georgia, serif;
     font-size: 18px;
-    border-radius: 20px;
 }
 
-.login-box input[type="submit"]:hover{
+.login-content {
+    width: 100%;
+    max-width: 390px;
+    margin: 56px auto;
+    animation: content-arrive 700ms 100ms both;
+}
+
+.eyebrow,
+.secure-note,
+.caption-index,
+.image-credit {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+    color: var(--mint);
+}
+
+.eyebrow span {
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    transform: rotate(45deg);
+}
+
+h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 4vw, 56px);
+    font-weight: 400;
+    line-height: 1.04;
+}
+
+.intro {
+    margin: 18px 0 38px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+#login-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #d7e0da;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#username,
+.password-field input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    outline: none;
+    padding: 0 15px;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.025);
+    font-size: 13px;
+    transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+#username::placeholder,
+.password-field input::placeholder {
+    color: #78857e;
+}
+
+#username:focus,
+.password-field input:focus {
+    border-color: var(--mint-deep);
+    background: rgba(116, 198, 157, 0.045);
+    box-shadow: 0 0 0 3px rgba(116, 198, 157, 0.1);
+}
+
+.password-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.password-heading label {
+    margin-bottom: 10px;
+}
+
+.secure-note {
+    margin-bottom: 10px;
+    color: #7f8e86;
+    font-size: 8px;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 68px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 52px;
+    border: 0;
+    padding: 0 15px;
+    color: var(--mint);
+    background: transparent;
     cursor: pointer;
-    background: #0575f6;
-    color: #000;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-.login-box a{
-     text-decoration: none;
-     color: darkgrey;
-     font-size: 12px;
-     line-height: 20px;
+.password-toggle:hover {
+    color: #fff;
 }
 
-.login-box a:hover{
-    color:#0575f6;
+.demo-hint {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.demo-hint code {
+    color: var(--mint);
+    font-family: "Consolas", "Courier New", monospace;
+}
+
+.submit-button {
+    width: 100%;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    border: 0;
+    padding: 0 18px;
+    color: #13201a;
+    background: var(--mint);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    background: #d0f7df;
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.submit-arrow {
+    font-size: 20px;
+    font-weight: 400;
+    transition: transform 180ms ease;
+}
+
+.submit-button:hover .submit-arrow {
+    transform: translateX(4px);
+}
+
+.login-status {
+    min-height: 20px;
+    margin: 12px 0 0;
+    color: var(--orange);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.panel-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #78857e;
+    font-size: 10px;
+}
+
+.welcome-screen {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 72px);
+    animation: content-arrive 550ms ease both;
+}
+
+.welcome-header {
+    min-height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid rgba(234, 241, 237, 0.13);
+}
+
+.welcome-nav {
+    display: flex;
+    gap: clamp(18px, 4vw, 46px);
+}
+
+.welcome-nav a {
+    color: var(--muted);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 160ms ease;
+}
+
+.welcome-nav a:hover {
+    color: var(--mint);
+}
+
+.sign-out-button {
+    min-height: 40px;
+    border: 1px solid var(--line);
+    padding: 0 16px;
+    color: var(--ink);
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    transition: border-color 160ms ease, color 160ms ease;
+}
+
+.sign-out-button:hover {
+    border-color: var(--mint-deep);
+    color: var(--mint);
+}
+
+.welcome-hero {
+    min-height: 520px;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.8fr) minmax(380px, 1.2fr);
+    align-items: center;
+    gap: clamp(32px, 7vw, 100px);
+    padding: 64px 0 78px;
+}
+
+.welcome-copy {
+    max-width: 470px;
+}
+
+.welcome-copy h1 {
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 0.98;
+}
+
+.welcome-copy h1 em {
+    color: var(--mint);
+    font-weight: 400;
+}
+
+.welcome-intro {
+    max-width: 370px;
+    margin: 24px 0 30px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.welcome-intro strong {
+    color: var(--ink);
+}
+
+.welcome-cta {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid var(--mint-deep);
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.welcome-cta span {
+    font-size: 18px;
+    transition: transform 160ms ease;
+}
+
+.welcome-cta:hover span {
+    transform: translateY(3px);
+}
+
+.welcome-image {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    padding: 26px;
+    overflow: hidden;
+    background-color: #30433e;
+    background-image:
+        linear-gradient(180deg, transparent 48%, rgba(12, 25, 23, 0.64)),
+        url("lamborghini-huracan-3840x2160-18389.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.welcome-image::after {
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(238, 246, 239, 0.23);
+    content: "";
+    pointer-events: none;
+}
+
+.welcome-image-label {
+    position: relative;
+    z-index: 1;
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.session-section {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(420px, 1.3fr);
+    gap: clamp(32px, 7vw, 100px);
+    border-top: 1px solid rgba(234, 241, 237, 0.13);
+    padding: 52px 0 64px;
+}
+
+.session-heading h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.session-heading > p:last-child {
+    max-width: 300px;
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.session-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.session-detail {
+    display: flex;
+    gap: 15px;
+    padding: 4px 18px;
+    border-left: 1px solid var(--line);
+}
+
+.detail-index {
+    color: var(--orange);
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.session-detail h3 {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.session-detail p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.welcome-footer {
+    min-height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(234, 241, 237, 0.13);
+}
+
+.welcome-footer > span {
+    color: #78857e;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.footer-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--mint-deep);
+}
+
+.visual-panel {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: clamp(34px, 5vw, 64px);
+    background-color: #30433e;
+    background-image:
+        linear-gradient(180deg, rgba(12, 25, 23, 0.03) 24%, rgba(12, 25, 23, 0.78) 100%),
+        linear-gradient(90deg, rgba(12, 25, 23, 0.2), transparent 58%),
+        url("lamborghini-huracan-3840x2160-18389.jpg");
+    background-position: center;
+    background-size: cover;
+    animation: image-arrive 1s ease-out both;
+}
+
+.visual-panel::after {
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(238, 246, 239, 0.19);
+    content: "";
+    pointer-events: none;
+}
+
+.visual-caption,
+.image-credit {
+    position: relative;
+    z-index: 1;
+}
+
+.visual-caption {
+    animation: content-arrive 750ms 220ms both;
+}
+
+.caption-index {
+    color: var(--mint);
+}
+
+.visual-caption p {
+    margin: 18px 0 22px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 4.5vw, 58px);
+    line-height: 1.03;
+}
+
+.visual-caption strong {
+    color: var(--mint);
+    font-weight: 400;
+}
+
+.caption-rule {
+    width: 50px;
+    height: 2px;
+    display: block;
+    background: var(--orange);
+}
+
+.image-credit {
+    position: absolute;
+    right: 35px;
+    bottom: 35px;
+    color: rgba(238, 246, 239, 0.8);
+    font-size: 8px;
+}
+
+@keyframes shell-arrive {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes content-arrive {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes image-arrive {
+    from { background-size: 108%; }
+    to { background-size: cover; }
+}
+
+@media (max-width: 900px) {
+    body {
+        padding: 20px;
+    }
+
+    .login-shell {
+        min-height: calc(100vh - 40px);
+        grid-template-columns: 1fr;
+    }
+
+    .login-panel {
+        min-height: 620px;
+        padding: 32px clamp(26px, 8vw, 56px);
+    }
+
+    .login-content {
+        margin: 48px auto;
+    }
+
+    .visual-panel {
+        min-height: 300px;
+        background-position: center 58%;
+    }
+
+    .visual-caption p {
+        margin: 12px 0 14px;
+        font-size: 38px;
+    }
+
+    .welcome-header {
+        min-height: 76px;
+    }
+
+    .welcome-hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 58px 0;
+    }
+
+    .welcome-image {
+        min-height: 340px;
+    }
+
+    .session-section {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        padding: 0;
+    }
+
+    .login-shell {
+        min-height: 100vh;
+    }
+
+    .login-panel {
+        min-height: 620px;
+        padding: 26px 24px;
+    }
+
+    .visual-panel {
+        min-height: 250px;
+        padding: 30px;
+    }
+
+    .image-credit {
+        display: none;
+    }
+
+    .welcome-screen {
+        padding: 0 20px;
+    }
+
+    .welcome-header {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 16px 0;
+    }
+
+    .welcome-nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 8px;
+    }
+
+    .welcome-hero {
+        padding: 44px 0;
+    }
+
+    .welcome-copy h1 {
+        font-size: 48px;
+    }
+
+    .welcome-image {
+        min-height: 260px;
+        padding: 20px;
+    }
+
+    .session-section {
+        padding: 38px 0;
+    }
+
+    .session-details {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .session-detail {
+        padding: 0 0 0 14px;
+    }
+
+    .welcome-footer .wordmark {
+        font-size: 10px;
+    }
+
+    .welcome-footer > span {
+        font-size: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }

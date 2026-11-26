@@ -15,7 +15,7 @@
 <body>
     <center>
     <h2><b>Registration Form</b></h2>
-    <form action="/action_page.php" method="post">
+    <div id="registration-fields" role="form" aria-label="Registration details">
         <label for="id">ID:</label>
         <input type="text" id="id" name="id"><br><br>
         <label for="name">Name:</label>
@@ -34,8 +34,15 @@
         <textarea id="about" name="about" style="width: 225px;height:40px;"></textarea><br><br>
         <label for="password">Password</label>
         <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="add">
-    </form>
+        <input type="button" id="registration-submit" value="add">
+        <p id="registration-status" role="status" aria-live="polite"></p>
+    </div>
     </center>
+    <script>
+        document.getElementById("registration-submit").addEventListener("click", () => {
+            document.getElementById("registration-status").textContent =
+                "Registration is a visual demo; no registration service is connected.";
+        });
+    </script>
 </body>
 </html>
