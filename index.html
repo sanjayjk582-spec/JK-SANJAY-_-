@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login form design</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="login-box">
+            <img src="Avatar.png.png" class="avatar">
+            <h1>Login here</h1>
+            <form id="login-form" method="post">
+                <p>User name:</p>
+                <input type="text" name="username" placeholder="Enter Username" autocomplete="username" required>
+                <p>Password:</p>
+                <input type="password" name="password" placeholder="Enter password" autocomplete="current-password" required>
+                <input type="submit" value="submit"><br>
+                <a href="#"> Lost your password?</a><br>
+                <a href="#">don't have an account?</a>
+                <p id="login-status" role="status" aria-live="polite"></p>
+            </form>
+
+        </div>
+        <script>
+            document.getElementById("login-form").addEventListener("submit", (event) => {
+                event.preventDefault();
+                document.getElementById("login-status").textContent =
+                    "Sign-in is unavailable because no authentication service is configured.";
+            });
+        </script>
+    </body>
+</html>
